@@ -58,7 +58,7 @@ app.use(function (req, res, next) {
 });
 
 
-var mongoDB = 'mongodb://hhuser:dk7asAhey2hWH@ds123499.mlab.com:23499/hh'
+var mongoDB = 'mongodb://wcuser:7FGsha!9R3pE4Ui@ds139781.mlab.com:39781/worldcup'
 mongoose.connect(mongoDB);
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
