@@ -1,6 +1,22 @@
-.flag{
-	border: 1px solid #000;
-	border-radius: 100%;
+.TeamSelect{
+	text-align: center;
+}
+table{
+	border-collapse: collapse;
+	margin: 0px auto;
+	width: 600px;
+}
+td{
+	border: 1px solid #CCC;
+	font-size: 18px;
+	font-weight: bold;
 	height: 50px;
-	width: 50px;
+	vertical-align: middle;
+}
+.flag{
+	border: 1px solid #999;
+	border-radius: 100%;
+	height: 40px;
+	margin-top: 5px;
+	width: 40px;
 }

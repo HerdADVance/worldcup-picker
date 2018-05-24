@@ -40,7 +40,7 @@ class TeamSelect extends Component{
     const teams = TEAMS;
 
     return(
-      <div>
+      <div className="TeamSelect">
         <h1>Team Select Page</h1>
         <table>
         {teams.map(team => 
@@ -48,7 +48,7 @@ class TeamSelect extends Component{
             <td><img className="flag" src={"/img/flags/" + team.url + ".svg"} /></td>
             <td>{team.name}</td>
             <td>{team.group}</td>
-            <td>{team.price}</td>
+            <td>${team.price}</td>
           </tr>
         )}
         </table>
