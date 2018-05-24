@@ -14,6 +14,7 @@ import Header from './components/Header/Header';
 import Authenticate from './components/Authenticate/Authenticate';
 import UserProfile from './components/UserProfile/UserProfile';
 import Game from './components/Game/Game';
+import TeamSelect from './components/TeamSelect/TeamSelect';
 import PlayerOne from './components/Player/Player';
 import PlayerTwo from './components/Player/Player';
 import Footer from './components/Footer/Footer';
@@ -53,6 +54,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Authenticate}/>
                 <Route path="/user/:id" component={UserProfile}/>
+                <Route path="/team" component={TeamSelect}/>
               </Switch>
             </div>
             <Footer />
