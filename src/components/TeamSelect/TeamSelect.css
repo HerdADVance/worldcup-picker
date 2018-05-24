@@ -1,28 +1,36 @@
 .TeamSelect{
 	text-align: center;
 }
-.team-select{
+.TeamSelect .half{
+	float: left;
+	margin: 0 2% 0 0;
+	width: 48%;
+}
+.TeamSelect .half:last-child{
+	margin: 0 0 0 2%;
+}
+.team-select table{
 	border-collapse: collapse;
 	margin: 0px auto;
 	user-select: none;
-	width: 400px;
+	width: 100%;
 }
 .team-select tr{
-	background: #EEE;
+	background: #DDD;
 	cursor: pointer;
 }
 .team-select tr:hover{
-	background: #DDD;
+	background: #CCC;
 }
 .team-select th{
 	background: white;
-	border: 1px solid #CCC;
+	border: 1px solid #DDD;
 	font-size: 16px;
 	font-weight: bold;
 	padding: 8px;
 }
 .team-select td{
-	border: 1px solid #CCC;
+	border: 1px solid #BBB;
 	font-size: 18px;
 	height: 50px;
 	vertical-align: middle;

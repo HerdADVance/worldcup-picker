@@ -14,7 +14,8 @@ class TeamSelect extends Component{
     super(props);
     this.state = {
       teams: [],
-      selectedTeams: []
+      chosenTeams: [],
+      salary: 100
     }
   }
 
@@ -46,7 +47,26 @@ class TeamSelect extends Component{
     this.setState ({ teams: this.state.teams.sort(this.sortByTeamPrice) });
   }
   handleTeamSelectClick = (team) => {
-    //console.log(team.name);
+    var chosenTeams = this.state.chosenTeams;
+    var salary = this.state.salary;
+
+    chosenTeams.push(team);
+    salary -= team.price;
+
+    this.setState ({ chosenTeams: chosenTeams, salary: salary });
+  }
+
+  handleTeamChosenClick = (team) => {
+    var chosenTeams = this.state.chosenTeams;
+    var salary = this.state.salary;
+
+    chosenTeams = chosenTeams.filter(function( obj ) {
+      return obj.id != team.id;
+    });
+  
+    salary += team.price;
+
+    this.setState ({ chosenTeams: chosenTeams, salary: salary });
   }
 
   sortByTeamGroup = (a,b) => {
@@ -74,21 +94,39 @@ class TeamSelect extends Component{
   render(){
     return(
       <div className="TeamSelect">
-        <h1>Team Select</h1>
-        <table className="team-select">
-        <thead><tr>
-          <th onClick={this.handleSortByTeamName}>Team</th>
-          <th onClick={this.handleSortByTeamGroup}>Group</th>
-          <th onClick={this.handleSortByTeamPrice}>Price</th>
-        </tr></thead><tbody>
-        {this.state.teams.map(team => 
-          <tr key={team.id} onClick={(e) => this.handleTeamSelectClick(team)}>
-            <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
-            <td className="team-select-group">{team.group}</td>
-            <td className="team-select-price">${team.price}</td>
-          </tr>
-        )}
-        </tbody></table>
+        <h1>Choose My Team (${this.state.salary})</h1>
+        <div className="team-select half">
+          <table>
+          <thead><tr>
+            <th onClick={this.handleSortByTeamName}>Team</th>
+            <th onClick={this.handleSortByTeamGroup}>Group</th>
+            <th onClick={this.handleSortByTeamPrice}>Price</th>
+          </tr></thead><tbody>
+          {this.state.teams.map(team => 
+            <tr key={team.id} onClick={(e) => this.handleTeamSelectClick(team)}>
+              <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
+              <td className="team-select-group">{team.group}</td>
+              <td className="team-select-price">${team.price}</td>
+            </tr>
+          )}
+          </tbody></table>
+        </div>
+        <div className="team-select half">
+          <table>
+          <thead><tr>
+            <th onClick={this.handleSortByTeamName}>Team</th>
+            <th onClick={this.handleSortByTeamGroup}>Group</th>
+            <th onClick={this.handleSortByTeamPrice}>Price</th>
+          </tr></thead><tbody>
+          {this.state.chosenTeams.map(team => 
+            <tr key={team.id} onClick={(e) => this.handleTeamChosenClick(team)}>
+              <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
+              <td className="team-select-group">{team.group}</td>
+              <td className="team-select-price">${team.price}</td>
+            </tr>
+          )}
+          </tbody></table>
+        </div>
       </div>
     )
   }
