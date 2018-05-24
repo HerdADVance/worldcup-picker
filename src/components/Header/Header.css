@@ -1,12 +1,28 @@
 .Header{
-  background: mediumseagreen;
-  height: 60px;
-  line-height: 60px;
-  text-align: left;
+	border-top: 1px solid #666;
 }
-.Header a{
-  color: white;
+.TopHeader{
+	background: #FFF;
+	color: #000;
+	height: 38px;
+	line-height: 38px;
+	text-align: right;
 }
-.Header .logo{
-  font-size: 28px;
+.MiddleHeader{
+	background: #0039A6;
+	height: 38px;
+	line-height: 38px;
+}
+.MiddleHeader a{
+  	color: white;
+}
+.MiddleHeader .logo{
+	font-family: 'Russo One';
+  	font-size: 28px;
+}
+.BottomHeader{
+	background: #D52B1E;
+	border-bottom: 1px solid #000;
+	box-shadow: 1px 1px 20px #000;
+	height: 38px;
 }

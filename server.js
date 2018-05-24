@@ -4,7 +4,6 @@ var http = require("http");
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var User = require('./src/models/User');
-var socketIo = require("socket.io");
 var cors = require('cors');
 var axios = require('axios');
 var logger = require('morgan');

@@ -16,8 +16,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   box-sizing: border-box;
 }
 body {
-  background: #EEE;
-  font-family: sans-serif;
+  background: #FFF;
+  font-family: 'Exo 2', sans-serif;
 }
 
 a{
@@ -48,7 +48,7 @@ label{
   padding: 15px 30px;
 }
 .wrap{
-  padding: 0 10%;
+  padding: 0 5%;
 }
 .no-underline:hover{
   text-decoration: none;
@@ -64,4 +64,6 @@ label{
 
 .main{
   flex: 1;
+  padding-bottom: 50px;
+  padding-top: 30px;
 }

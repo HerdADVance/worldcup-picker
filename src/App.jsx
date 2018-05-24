@@ -1,7 +1,5 @@
 // DEPENDENCIES
-//import subscribeToTimer from './api'; 
 import React, { Component } from 'react';
-import socketIOClient from "socket.io-client";
 
 // CSS
 import './App.css';
@@ -13,10 +11,7 @@ import './App.css';
 import Header from './components/Header/Header';
 import Authenticate from './components/Authenticate/Authenticate';
 import UserProfile from './components/UserProfile/UserProfile';
-import Game from './components/Game/Game';
 import TeamSelect from './components/TeamSelect/TeamSelect';
-import PlayerOne from './components/Player/Player';
-import PlayerTwo from './components/Player/Player';
 import Footer from './components/Footer/Footer';
 
 // ROUTER
@@ -50,7 +45,7 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
             <Header />
-            <div className="main">
+            <div className="main wrap">
               <Switch>
                 <Route exact path="/" component={Authenticate}/>
                 <Route path="/user/:id" component={UserProfile}/>

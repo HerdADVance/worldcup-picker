@@ -1,22 +1,48 @@
 .TeamSelect{
 	text-align: center;
 }
-table{
+.team-select{
 	border-collapse: collapse;
 	margin: 0px auto;
-	width: 600px;
+	user-select: none;
+	width: 400px;
 }
-td{
+.team-select tr{
+	background: #EEE;
+	cursor: pointer;
+}
+.team-select tr:hover{
+	background: #DDD;
+}
+.team-select th{
+	background: white;
+	border: 1px solid #CCC;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 8px;
+}
+.team-select td{
 	border: 1px solid #CCC;
 	font-size: 18px;
-	font-weight: bold;
 	height: 50px;
 	vertical-align: middle;
 }
-.flag{
-	border: 1px solid #999;
+.team-select-flag{
+	border: 0px solid #999;
 	border-radius: 100%;
+	box-shadow: 2px 2px 4px #000;
+	float: left;
 	height: 40px;
-	margin-top: 5px;
+	margin: 5px 20px 5px 10px;
 	width: 40px;
+}
+.team-select-name{
+	display: block;
+	float: left;
+	font-size: 22px;
+	font-weight: 300;
+	line-height: 50px;
+}
+.team-select-price{
+	font-weight: bold;
 }

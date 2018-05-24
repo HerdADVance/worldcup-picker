@@ -19,7 +19,7 @@ class TeamSelect extends Component{
   }
 
   componentDidMount() {
-    //
+    this.setState({ teams: TEAMS.sort(this.sortByTeamPrice) });
   }
 
   handleUsernameChange = (e) => {
@@ -36,22 +36,59 @@ class TeamSelect extends Component{
     //     });
   }
 
-  render(){
-    const teams = TEAMS;
+  handleSortByTeamGroup = () => {
+    this.setState ({ teams: this.state.teams.sort(this.sortByTeamGroup) });
+  }
+  handleSortByTeamName = () => {
+    this.setState ({ teams: this.state.teams.sort(this.sortByTeamName) });
+  }
+  handleSortByTeamPrice = () => {
+    this.setState ({ teams: this.state.teams.sort(this.sortByTeamPrice) });
+  }
+  handleTeamSelectClick = (team) => {
+    //console.log(team.name);
+  }
 
+  sortByTeamGroup = (a,b) => {
+      if (a.group < b.group)
+        return -1;
+      if (a.group > b.group)
+        return 1;
+      return 0;
+  }
+  sortByTeamName = (a,b) => {
+      if (a.name < b.name)
+        return -1;
+      if (a.name > b.name)
+        return 1;
+      return 0;
+  }
+  sortByTeamPrice = (a,b) => {
+      if (a.price > b.price)
+        return -1;
+      if (a.price < b.price)
+        return 1;
+      return 0;
+  }
+
+  render(){
     return(
       <div className="TeamSelect">
-        <h1>Team Select Page</h1>
-        <table>
-        {teams.map(team => 
-          <tr>
-            <td><img className="flag" src={"/img/flags/" + team.url + ".svg"} /></td>
-            <td>{team.name}</td>
-            <td>{team.group}</td>
-            <td>${team.price}</td>
+        <h1>Team Select</h1>
+        <table className="team-select">
+        <thead><tr>
+          <th onClick={this.handleSortByTeamName}>Team</th>
+          <th onClick={this.handleSortByTeamGroup}>Group</th>
+          <th onClick={this.handleSortByTeamPrice}>Price</th>
+        </tr></thead><tbody>
+        {this.state.teams.map(team => 
+          <tr key={team.id} onClick={(e) => this.handleTeamSelectClick(team)}>
+            <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
+            <td className="team-select-group">{team.group}</td>
+            <td className="team-select-price">${team.price}</td>
           </tr>
         )}
-        </table>
+        </tbody></table>
       </div>
     )
   }
