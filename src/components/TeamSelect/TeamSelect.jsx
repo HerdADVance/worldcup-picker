@@ -48,25 +48,44 @@ class TeamSelect extends Component{
   }
   handleTeamSelectClick = (team) => {
     var chosenTeams = this.state.chosenTeams;
+    var teams = this.state.teams;
     var salary = this.state.salary;
 
-    chosenTeams.push(team);
-    salary -= team.price;
+    var selected = chosenTeams.filter(function( obj ) {
+      return obj.id == team.id;
+    });
 
-    this.setState ({ chosenTeams: chosenTeams, salary: salary });
+    if(selected.length === 0){
+      for(var i=0; i < teams.length; i++){
+        if(teams[i].id === team.id){
+          teams[i].selected = true;
+        }
+      }
+
+      chosenTeams.push(team);
+      salary -= team.price;
+      this.setState ({ teams: teams, chosenTeams: chosenTeams, salary: salary });
+    }
   }
 
   handleTeamChosenClick = (team) => {
     var chosenTeams = this.state.chosenTeams;
+    var teams = this.state.teams;
     var salary = this.state.salary;
 
     chosenTeams = chosenTeams.filter(function( obj ) {
       return obj.id != team.id;
     });
+
+    for(var i=0; i < teams.length; i++){
+      if(teams[i].id === team.id){
+        teams[i].selected = false;
+      }
+    }
   
     salary += team.price;
 
-    this.setState ({ chosenTeams: chosenTeams, salary: salary });
+    this.setState ({ teams: teams, chosenTeams: chosenTeams, salary: salary });
   }
 
   sortByTeamGroup = (a,b) => {
@@ -103,7 +122,7 @@ class TeamSelect extends Component{
             <th onClick={this.handleSortByTeamPrice}>Price</th>
           </tr></thead><tbody>
           {this.state.teams.map(team => 
-            <tr key={team.id} onClick={(e) => this.handleTeamSelectClick(team)}>
+            <tr key={team.id} onClick={(e) => this.handleTeamSelectClick(team)} className={team.selected ? 'selected' : ''}>
               <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
               <td className="team-select-group">{team.group}</td>
               <td className="team-select-price">${team.price}</td>

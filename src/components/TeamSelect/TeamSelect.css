@@ -22,6 +22,10 @@
 .team-select tr:hover{
 	background: #CCC;
 }
+.team-select tr.selected{
+	background: rgba(213,43,30,0.25);
+	cursor: not-allowed;
+}
 .team-select th{
 	background: white;
 	border: 1px solid #DDD;
