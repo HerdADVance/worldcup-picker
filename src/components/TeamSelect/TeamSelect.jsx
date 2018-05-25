@@ -55,6 +55,11 @@ class TeamSelect extends Component{
       return obj.id == team.id;
     });
 
+    if(chosenTeams.length >= 8){
+      alert("Too many teams");
+      return;
+    }
+
     if(selected.length === 0){
       for(var i=0; i < teams.length; i++){
         if(teams[i].id === team.id){
@@ -113,7 +118,7 @@ class TeamSelect extends Component{
   render(){
     return(
       <div className="TeamSelect">
-        <h1>Choose My Team (${this.state.salary})</h1>
+        <h1>Choose My Team (<span className={this.state.salary >= 0 ? 'positive' : 'negative'}>${this.state.salary}</span>)</h1>
         <div className="team-select half">
           <table>
           <thead><tr>

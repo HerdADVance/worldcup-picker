@@ -9,6 +9,12 @@
 .TeamSelect .half:last-child{
 	margin: 0 0 0 2%;
 }
+.positive{
+	color: green;
+}
+.negative{
+	color: red;
+}
 .team-select table{
 	border-collapse: collapse;
 	margin: 0px auto;
