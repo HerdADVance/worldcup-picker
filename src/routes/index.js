@@ -39,7 +39,11 @@ router.post('/api/users/register', (request, response) => {
 	            });
 	        }
 	    });
-	} else return err("Passwords do not match");
+	} else{
+		var err = new Error('Passwords don\'t match');
+		err.status = 401;
+		return next(err);
+	}
 });
 
 // router.get('/users', function(req, res, next) {
