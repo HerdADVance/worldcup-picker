@@ -38,7 +38,7 @@ class Register extends Component{
   }
   handleRegisterSubmit = (e) =>{
     e.preventDefault();
-    axios.post('http://localhost:5000/api/users/new', this.state)
+    axios.post('http://localhost:5000/api/users/register', this.state)
         .then((result) => {
           console.log(result.data);
           this.setState({ 

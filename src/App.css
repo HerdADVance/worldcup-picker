@@ -43,6 +43,10 @@ input[type=submit]{
 label{
   font-weight: bold;
 }
+button{
+  border: none;
+  cursor: pointer;
+}
 
 .inner-wrap{
   padding: 15px 30px;

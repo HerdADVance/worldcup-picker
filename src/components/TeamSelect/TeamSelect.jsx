@@ -23,10 +23,18 @@ class TeamSelect extends Component{
     this.setState({ teams: TEAMS.sort(this.sortByTeamPrice) });
   }
 
-  handleUsernameChange = (e) => {
-    this.setState({username: e.target.value});
+  handleTeamClear = () => {
+    var teams = this.state.teams;
+
+    for(var i=0; i < teams.length; i++){
+      teams[i].selected = false;
+    }
+
+    this.setState({ teams: teams, chosenTeams: [], salary: 100 });
   }
-  handleTeamSelectSubmit = (e) =>{
+
+  handleTeamSubmit = (e) =>{
+    console.log(this.state.chosenTeams);
     // e.preventDefault();
     // axios.post('http://localhost:5000/api/users/new', this.state)
     //     .then((result) => {
@@ -122,7 +130,7 @@ class TeamSelect extends Component{
         <div className="team-select half">
           <table>
           <thead><tr>
-            <th onClick={this.handleSortByTeamName}>Team</th>
+            <th onClick={this.handleSortByTeamName}>Squad</th>
             <th onClick={this.handleSortByTeamGroup}>Group</th>
             <th onClick={this.handleSortByTeamPrice}>Price</th>
           </tr></thead><tbody>
@@ -138,7 +146,7 @@ class TeamSelect extends Component{
         <div className="team-select half">
           <table>
           <thead><tr>
-            <th onClick={this.handleSortByTeamName}>Team</th>
+            <th onClick={this.handleSortByTeamName}>Squad</th>
             <th onClick={this.handleSortByTeamGroup}>Group</th>
             <th onClick={this.handleSortByTeamPrice}>Price</th>
           </tr></thead><tbody>
@@ -149,6 +157,25 @@ class TeamSelect extends Component{
               <td className="team-select-price">${team.price}</td>
             </tr>
           )}
+          <tr className="team-select-button submit">
+            <td colSpan="3">
+              <button 
+                onClick={(e) => this.handleTeamSubmit()}
+                className={this.state.chosenTeams.length == 8 && this.state.salary >= 0 ? 'clickable' : 'not-clickable'}
+               > 
+                Submit Team
+              </button>
+            </td>
+          </tr>
+          <tr className="team-select-button clear">
+            <td colSpan="3">
+              <button 
+                onClick={(e) => this.handleTeamClear()}
+               > 
+                Clear Team
+              </button>
+            </td>
+          </tr>
           </tbody></table>
         </div>
       </div>

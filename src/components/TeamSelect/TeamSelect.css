@@ -15,6 +15,12 @@
 .negative{
 	color: red;
 }
+.clickable{
+	cursor: pointer;
+}
+.not-clickable{
+	cursor: not-allowed;
+}
 .team-select table{
 	border-collapse: collapse;
 	margin: 0px auto;
@@ -63,4 +69,17 @@
 }
 .team-select-price{
 	font-weight: bold;
+}
+.team-select-submit td{
+	border: 1px solid mediumseagreen;
+}
+.team-select-button button{
+	background: mediumseagreen;
+	border: none;
+	color: white;
+	height: 100%;
+	width: 100%;
+}
+.team-select-button.clear button{
+	background: indianred;
 }

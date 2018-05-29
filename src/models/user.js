@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 var bcrypt = require('bcrypt');
 
 var UserSchema = new Schema({
@@ -18,6 +19,8 @@ var UserSchema = new Schema({
 		require: true
 	}
 });
+
+UserSchema.plugin(passportLocalMongoose);
 
 // Authenticate password input against database
 // UserSchema.statics.authenticate = function(email, password, cb){
@@ -41,16 +44,16 @@ var UserSchema = new Schema({
 // }
 
 // // Password hashing
-UserSchema.pre('save', function(next){
-	var user = this;
-	bcrypt.hash(user.password, 10, function(err, hash){
-		if(err){
-			return next(err);
-		}
-		user.password = hash;
-		next();
-	})
-});
+// UserSchema.pre('save', function(next){
+// 	var user = this;
+// 	bcrypt.hash(user.password, 10, function(err, hash){
+// 		if(err){
+// 			return next(err);
+// 		}
+// 		user.password = hash;
+// 		next();
+// 	})
+// });
 
 UserSchema
 .virtual('url')
