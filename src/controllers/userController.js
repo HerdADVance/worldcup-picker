@@ -1,6 +1,7 @@
 var User = require('../models/User');
 var bcrypt = require('bcrypt');
 var axios = require('axios');
+var passport = require('passport');
 
 exports.user_detail = function(req, res){
 	res.send(req.params.id);
@@ -92,5 +93,9 @@ exports.user_register = function(req, res, next){
 
 };
 
+exports.user_login = function(req, res, next){
+	console.log("USER LOGIN CONTROLLER");
+	console.log(req.user);
+};
 
 

@@ -20,9 +20,9 @@ router.get('/api/user/:id', user_controller.user_profile);
 router.post('/api/users/new', user_controller.user_register);
 
 router.post('/api/users/login', passport.authenticate('local', {
-	successRedirect: '/success',
-	failureRedirect: '/fail'
-}));
+	successRedirect: '',
+	failureRedirect: ''
+}), user_controller.user_login);
 
 router.post('/api/users/register', (request, response) => {
     // Creates and saves a new user with a salt and hashed password
