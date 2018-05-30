@@ -1,5 +1,7 @@
 // DEPENDENCIES
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
+import axios from 'axios';
 
 // CSS
 import './Login.css';
@@ -25,15 +27,21 @@ class Login extends Component{
   handlePasswordChange = (e) => {
     this.setState({password: e.target.value});
   }
-  handleFormSubmit = (e) =>{
+  handleLoginSubmit = (e) =>{
     e.preventDefault();
-    console.log(this.state);
+    axios.post('http://localhost:5000/api/users/login', this.state)
+        .then((result) => {
+          console.log(result.data);
+          // this.setState({ 
+          //   returnedUserId: result.data.userId,
+          // });
+        });
   }
 
   render(){
     return(
     	<div>
-		    <form onSubmit={this.handleFormSubmit}>
+		    <form onSubmit={this.handleLoginSubmit}>
 		      <label htmlFor="username">Username</label>
 		      <input type="text" id="username" onChange={this.handleUsernameChange}/>
 		      <label htmlFor="password">Password</label>

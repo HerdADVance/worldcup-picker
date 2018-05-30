@@ -20,8 +20,8 @@ router.get('/api/user/:id', user_controller.user_profile);
 router.post('/api/users/new', user_controller.user_register);
 
 router.post('/api/users/login', passport.authenticate('local', {
-	successRedirect: '/',
-	failureRedirect: '/'
+	successRedirect: '/success',
+	failureRedirect: '/fail'
 }));
 
 router.post('/api/users/register', (request, response) => {
@@ -30,12 +30,10 @@ router.post('/api/users/register', (request, response) => {
 	    User.register(new User({username: request.body.username, displayName: request.body.displayName}), request.body.password, function(err, user) {
 	        if (err) {
 	            console.log(err);
-	            //return response.render('register');
-	            return response.send("ERROR");
+	            return response.send(err._message);
 	        } else {
 	            passport.authenticate('local')(request, response, function() {
-	                //response.redirect('/dashboard');
-	                response.send("USER CREATED WITH PASSPORT");
+	                response.send("User created");
 	            });
 	        }
 	    });
