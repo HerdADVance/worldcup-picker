@@ -95,7 +95,15 @@ exports.user_register = function(req, res, next){
 
 exports.user_login = function(req, res, next){
 	console.log("USER LOGIN CONTROLLER");
-	console.log(req.user);
+	res.send("LOGGED IN");
+	console.log(req.session);
+};
+
+exports.user_logout = function(req, res, next){
+	req.logout();
+  	res.send("LOGGED OUT");
+  	console.log("LOG OUT");
+  	console.log(req.session);
 };
 
 

@@ -37,7 +37,6 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(session({ secret: "cats" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());

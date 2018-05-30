@@ -44,11 +44,6 @@ router.post('/api/users/register', (request, response) => {
 	}
 });
 
-// router.get('/users', function(req, res, next) {
-//  	connection.query('SELECT * from users', function (error, results, fields) {
-// 		if (error) throw error;
-// 		res.send(JSON.stringify(results));
-// 	});
-// });
+router.get('/api/users/logout', user_controller.user_logout);
 
 module.exports = router;
