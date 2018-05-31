@@ -51,9 +51,11 @@ class Dashboard extends Component{
             <tr><td>Team 1</td><td><button>Edit</button></td></tr>
             <tr><td>Team 2</td><td><button>Edit</button></td></tr>
             <tr><td>Team 3</td><td><button>Edit</button></td></tr>
-            <tr><td colSpan="2"><button>Create a Team</button></td></tr>
+            <tr><td colSpan="2">
+              <Link to="/team">Create a Team</Link>
+            </td></tr>
           </tbody></table>
-          
+
           <h2>Payouts</h2>
           
           <table><thead>
