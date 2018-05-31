@@ -103,8 +103,7 @@ exports.user_register = function(req, res, next){
 };
 
 exports.user_login = function(req, res, next){
-	console.log("USER LOGIN CONTROLLER");
-	res.send("LOGGED IN");
+	console.log(req.user);
 	console.log(req.session);
 
 	// User.findOne({ username: req.body.username })
