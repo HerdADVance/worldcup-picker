@@ -48,6 +48,15 @@ button{
   cursor: pointer;
 }
 
+.half{
+  float: left;
+  margin: 0 4% 0 0;
+  width: 46%;
+}
+.half:last-child{
+  margin: 0 0 0 4%;
+}
+
 .inner-wrap{
   padding: 15px 30px;
 }
@@ -71,3 +80,12 @@ button{
   padding-bottom: 50px;
   padding-top: 30px;
 }
+
+@media screen and (max-width: 800px) {
+  .half, .third{
+    float: none;
+    margin: 0;
+    width: 100%;
+  }
+}
+

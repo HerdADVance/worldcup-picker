@@ -10,6 +10,7 @@ import './App.css';
 // COMPONENTS
 import Header from './components/Header/Header';
 import Authenticate from './components/Authenticate/Authenticate';
+import Dashboard from './components/Dashboard/Dashboard';
 import UserProfile from './components/UserProfile/UserProfile';
 import TeamSelect from './components/TeamSelect/TeamSelect';
 import Footer from './components/Footer/Footer';
@@ -48,6 +49,7 @@ class App extends Component {
             <div className="main wrap">
               <Switch>
                 <Route exact path="/" component={Authenticate}/>
+                <Route exact path="/home" component={Dashboard}/>
                 <Route path="/user/:id" component={UserProfile}/>
                 <Route path="/team" component={TeamSelect}/>
               </Switch>

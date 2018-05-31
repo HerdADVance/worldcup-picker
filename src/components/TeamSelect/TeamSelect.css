@@ -1,14 +1,6 @@
 .TeamSelect{
 	text-align: center;
 }
-.TeamSelect .half{
-	float: left;
-	margin: 0 2% 0 0;
-	width: 48%;
-}
-.TeamSelect .half:last-child{
-	margin: 0 0 0 2%;
-}
 .positive{
 	color: green;
 }
