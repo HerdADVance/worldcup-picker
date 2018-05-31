@@ -7,6 +7,8 @@ var user_controller = require('../controllers/userController');
 
 router.get('/', (req, res) => {
 	//res.send({ response: "I am alive" }).status(200);
+	console.log(req.session);
+	res.send(req.session);
 })
 
 router.get('/abc', (req, res) => {

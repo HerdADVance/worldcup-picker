@@ -103,8 +103,8 @@ exports.user_register = function(req, res, next){
 };
 
 exports.user_login = function(req, res, next){
-	console.log(req.user);
-	console.log(req.session);
+	req.session.passport.id = "JONS ID";
+	res.send(req.session);
 
 	// User.findOne({ username: req.body.username })
 	// // TO DO: check password
