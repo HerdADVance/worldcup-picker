@@ -6,6 +6,10 @@ var Entryschema = new Schema({
 	user:{
 		type: Schema.Types.ObjectId,
 		ref: 'User'
+	},
+	teamName:{
+		type: String,
+		max: 50
 	}
 	teams: [{
 		teamId: Number
