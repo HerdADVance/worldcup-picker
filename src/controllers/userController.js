@@ -1,7 +1,16 @@
 var User = require('../models/User');
 var bcrypt = require('bcrypt');
 var axios = require('axios');
+var jwt = require('jsonwebtoken');
 var passport = require('passport');
+// var passportJWT = require('passport-jwt');
+
+// var ExtractJwt = passportJWT.ExtractJwt;
+// var JwtStrategy = passportJWT.Strategy;
+
+// var jwtOptions = {}
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+// jwtOptions.secretOrKey = 'FEITAHERD';
 
 exports.user_detail = function(req, res){
 	res.send(req.params.id);
@@ -97,13 +106,24 @@ exports.user_login = function(req, res, next){
 	console.log("USER LOGIN CONTROLLER");
 	res.send("LOGGED IN");
 	console.log(req.session);
+
+	// User.findOne({ username: req.body.username })
+	// // TO DO: check password
+	// 		.exec(function(err, user){
+	// 			if(err){
+	// 				return next(err);
+	// 			} else if (user){
+	// 				var payload = {id: user.id};
+	// 				var token = jwt.sign(payload, jwtOptions.secretOrKey);
+	// 				res.json({message: "Token received", token: token});
+	// 			}
+	// 		});
 };
 
 exports.user_logout = function(req, res, next){
 	req.logout();
-  	res.send("LOGGED OUT");
-  	console.log("LOG OUT");
-  	console.log(req.session);
 };
+
+
 
 

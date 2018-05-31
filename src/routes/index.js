@@ -46,4 +46,8 @@ router.post('/api/users/register', (request, response) => {
 
 router.get('/api/users/logout', user_controller.user_logout);
 
+// router.get("/api/users/secret", passport.authenticate('jwt', { session: false }), function(req, res){
+//   res.json({message: "Success! You can not see this without a token"});
+// });
+
 module.exports = router;

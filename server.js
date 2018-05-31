@@ -13,6 +13,16 @@ const passportLocalMongoose = require('passport-local-mongoose')
 var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 
+// var jwt = require('jsonwebtoken');
+// var passportJWT = require('passport-jwt');
+
+// var ExtractJwt = passportJWT.ExtractJwt;
+// var JwtStrategy = passportJWT.Strategy;
+
+// var jwtOptions = {}
+// jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
+// jwtOptions.secretOrKey = 'FEITAHERD';
+
 var router = express.Router();
 
 // ROUTES
@@ -32,7 +42,7 @@ app.use(cookieParser());
 
 // PASSPORT AND SESSIONS
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'FEITAHERD',
     resave: false,
     saveUninitialized: false
 }));
@@ -41,11 +51,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//passport.use(new LocalStrategy(User.authenticate()));
+// //passport.use(new LocalStrategy(User.authenticate()));
 
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+// var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
+//     console.log('payload received', jwt_payload);
+//     User.findById(jwt_payload.id)
+//         .exec(function(err, user){
+//             if(err){
+//                 return next(err);
+//             } else if (user){
+//                 next(null, user);
+//             } else{
+//                 next(null, false);
+//             }
+//         });
+// });
+
+// passport.use(strategy);
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // passport.use(new LocalStrategy(
 //   function(username, password, done) {
