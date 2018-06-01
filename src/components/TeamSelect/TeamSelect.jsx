@@ -45,6 +45,9 @@ class TeamSelect extends Component{
     //     });
   }
 
+  handleSortByTeamContinent = () => {
+    this.setState ({ teams: this.state.teams.sort(this.sortByTeamContinent) });
+  }
   handleSortByTeamGroup = () => {
     this.setState ({ teams: this.state.teams.sort(this.sortByTeamGroup) });
   }
@@ -101,6 +104,13 @@ class TeamSelect extends Component{
     this.setState ({ teams: teams, chosenTeams: chosenTeams, salary: salary });
   }
 
+  sortByTeamContinent = (a,b) => {
+      if (a.continent > b.continent)
+        return 1;
+      if (a.continent < b.continent)
+        return -1;
+      return 0;
+  }
   sortByTeamGroup = (a,b) => {
       if (a.group < b.group)
         return -1;
@@ -126,7 +136,10 @@ class TeamSelect extends Component{
   render(){
     return(
       <div className="TeamSelect">
-        <h1>Choose My Team (<span className={this.state.salary >= 0 ? 'positive' : 'negative'}>${this.state.salary}</span>)</h1>
+        <h1>Choose My Team</h1>
+      
+        <input type="text" id="team-name" onChange={this.handleTeamNameChange} placeholder="Enter your team name" />
+        
         <div className="team-select half">
           <table>
           <thead><tr>
@@ -144,38 +157,44 @@ class TeamSelect extends Component{
           </tbody></table>
         </div>
         <div className="team-select half">
-          <table>
-          <thead><tr>
+          <table className="team-select-teams"><thead>
+          <tr>
             <th onClick={this.handleSortByTeamName}>Squad</th>
             <th onClick={this.handleSortByTeamGroup}>Group</th>
             <th onClick={this.handleSortByTeamPrice}>Price</th>
           </tr></thead><tbody>
-          {this.state.chosenTeams.map(team => 
+          {this.state.chosenTeams.map((team, index) => 
             <tr key={team.id} onClick={(e) => this.handleTeamChosenClick(team)}>
               <td><img className="team-select-flag" src={"/img/flags/" + team.url + ".svg"} /><span className="team-select-name">{team.name}</span></td>
               <td className="team-select-group">{team.group}</td>
               <td className="team-select-price">${team.price}</td>
             </tr>
           )}
-          <tr className="team-select-button submit">
-            <td colSpan="3">
-              <button 
-                onClick={(e) => this.handleTeamSubmit()}
-                className={this.state.chosenTeams.length == 8 && this.state.salary >= 0 ? 'clickable' : 'not-clickable'}
-               > 
-                Submit Team
-              </button>
-            </td>
-          </tr>
-          <tr className="team-select-button clear">
-            <td colSpan="3">
-              <button 
-                onClick={(e) => this.handleTeamClear()}
-               > 
-                Clear Team
-              </button>
-            </td>
-          </tr>
+          </tbody></table>
+
+          <table><thead></thead><tbody>
+            <tr className="team-select-info team-select-bottom">
+              <td>Teams Chosen: <span className="number-chosen">{this.state.chosenTeams.length}/8</span></td>
+              <td>Salary Remaining: <span className={this.state.salary >= 0 ? 'positive salary' : 'negative salary'}>${this.state.salary}</span></td>
+            </tr>
+            <tr className="team-select-action team-select-bottom">
+              <td>
+                <button 
+                  onClick={(e) => this.handleTeamSubmit()}
+                  className={this.state.chosenTeams.length == 8 && this.state.salary >= 0 ? 'clickable' : 'not-clickable'}
+                 > 
+                  Submit Team
+                </button>
+              </td>
+              <td className="clear">
+                <button 
+                  className={this.state.chosenTeams.length > 0 ? 'clickable' : 'not-clickable'}
+                  onClick={(e) => this.handleTeamClear()}
+                 > 
+                  Clear Team
+                </button>
+              </td>
+            </tr>
           </tbody></table>
         </div>
       </div>

@@ -12,8 +12,20 @@ class Dashboard extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      userTeams: [
+        {
+          id: 1,
+          name: 'My Team 1'
+        },
+        {
+          id: 2,
+          name: 'My Team 2'
+        },
+        {
+          id: 3,
+          name: 'My Team 3'
+        }
+      ]
     }
   }
 
@@ -21,12 +33,6 @@ class Dashboard extends Component{
     //
   }
 
-  handleUsernameChange = (e) => {
-    this.setState({username: e.target.value});
-  }
-  handlePasswordChange = (e) => {
-    this.setState({password: e.target.value});
-  }
   handleDashboardSubmit = (e) =>{
     e.preventDefault();
     axios.post('http://localhost:5000/api/users/login', this.state)
@@ -40,19 +46,25 @@ class Dashboard extends Component{
 
    render(){
     return(
-      <div className="instructions">
+      <div className="dashboard">
         <p>Welcome! The 2018 World Cup Picker is a daily fantasy style game. Choose 8 of the 32 squads competing in Russia this summer to form your team while staying within the starting $100 salary. The player with the team whose squads combine for the highest fantasy point total wins.</p>
         
         <div className="half">
-        <h2>My Teams</h2>
+        <h2>My Teams (4 Max)</h2>
 
           <table><thead>
             <tr><th colSpan="2">Teams</th></tr></thead><tbody>
-            <tr><td>Team 1</td><td><button>Edit</button></td></tr>
-            <tr><td>Team 2</td><td><button>Edit</button></td></tr>
-            <tr><td>Team 3</td><td><button>Edit</button></td></tr>
-            <tr><td colSpan="2">
-              <Link to="/team">Create a Team</Link>
+            {this.state.userTeams.map(team => 
+              <tr key={team.id}><td><span className="teams-name">{team.name}</span></td><td className="teams-edit"><Link to="/team/">Edit</Link></td></tr>
+            )}
+
+            <tr className="teams-create"><td colSpan="2">
+              {
+                this.state.userTeams.length < 4 ?
+                  <Link to="/team">Create a Team</Link>
+                :
+                  "Can't have more than 4 teams" 
+              }
             </td></tr>
           </tbody></table>
 

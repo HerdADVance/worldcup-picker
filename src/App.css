@@ -47,6 +47,9 @@ button{
   border: none;
   cursor: pointer;
 }
+button:focus{
+  outline: none;
+}
 
 .half{
   float: left;
@@ -66,6 +69,19 @@ button{
 .no-underline:hover{
   text-decoration: none;
 }
+.positive{
+  color: green;
+}
+.negative{
+  color: red;
+}
+.clickable{
+  cursor: pointer;
+}
+.not-clickable{
+  cursor: not-allowed;
+  opacity: 0.35;
+}
 
 .App{
   display: flex;
@@ -81,7 +97,7 @@ button{
   padding-top: 30px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .half, .third{
     float: none;
     margin: 0;

@@ -7,7 +7,7 @@ var Entryschema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'User'
 	},
-	teamName:{
+	name:{
 		type: String,
 		max: 50
 	}

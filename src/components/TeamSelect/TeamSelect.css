@@ -1,17 +1,12 @@
 .TeamSelect{
 	text-align: center;
 }
-.positive{
-	color: green;
-}
-.negative{
-	color: red;
-}
-.clickable{
-	cursor: pointer;
-}
-.not-clickable{
-	cursor: not-allowed;
+#team-name{
+	font-size: 18px;
+	height: 40px;
+	margin: 30px auto 40px auto;
+	text-align: center;
+	width: 400px;
 }
 .team-select table{
 	border-collapse: collapse;
@@ -43,6 +38,18 @@
 	height: 50px;
 	vertical-align: middle;
 }
+.team-select td:first-child{
+	border-left: none;
+}
+.team-select td:last-child{
+	border-right: none;
+}
+.team-select th:first-child{
+	border-left: none;
+}
+.team-select th:last-child{
+	border-right: none;
+}
 .team-select-flag{
 	border: 0px solid #999;
 	border-radius: 100%;
@@ -62,16 +69,60 @@
 .team-select-price{
 	font-weight: bold;
 }
-.team-select-submit td{
-	border: 1px solid mediumseagreen;
+
+
+.team-select-teams td{
+	height: 55px;
 }
-.team-select-button button{
-	background: mediumseagreen;
+.number-chosen, .salary{
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+.team-select-info{
+	cursor: auto !important;
+}
+.team-select-info td{
+	border-top: 5px solid #BBB;
+}
+.team-select-bottom:hover{
+	background: #DDD !important;
+}
+
+.team-select-bottom td{
+	border-left: none;
+	border-right: none;
+	width: 50%;
+}
+.team-select-bottom td:last-child{
+	width: 0%;
+}
+
+.team-select-action td{
+	border-bottom: none;
+}
+.team-select-action button{
+	background: #00b140;
 	border: none;
 	color: white;
 	height: 100%;
 	width: 100%;
 }
-.team-select-button.clear button{
-	background: indianred;
+.team-select-action button:hover{
+	background: #01c649;
 }
+.team-select-action td.clear button{
+	background: #cd5c5c
+}
+.team-select-action td.clear button:hover{
+	background: #bc4343;
+}
+
+@media screen and (max-width: 900px) {
+  #team-name{
+    max-width: 100%;
+  }
+}
+
+
