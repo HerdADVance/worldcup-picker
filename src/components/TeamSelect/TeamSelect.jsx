@@ -182,8 +182,8 @@ class TeamSelect extends Component{
 
           <table><thead></thead><tbody>
             <tr className="team-select-info team-select-bottom">
-              <td>Teams Chosen: <span className="number-chosen">{this.state.chosenTeams.length}/8</span></td>
-              <td>Salary Remaining: <span className={this.state.salary >= 0 ? 'positive salary' : 'negative salary'}>${this.state.salary}</span></td>
+              <td>Teams: <span className="number-chosen">{this.state.chosenTeams.length}/8</span></td>
+              <td>Salary: <span className={this.state.salary >= 0 ? 'positive salary' : 'negative salary'}>${this.state.salary}</span></td>
             </tr>
             <tr className="team-select-action team-select-bottom">
               <td>

@@ -13,7 +13,11 @@ var Entryschema = new Schema({
 	}
 	teams: [{
 		teamId: Number
-	}]
+	}],
+	paid:{
+		type: Boolean
+		default: false
+	}
 });
 
 module.exports = mongoose.model('Entry', EntrySchema);

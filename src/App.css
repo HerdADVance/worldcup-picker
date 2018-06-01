@@ -98,10 +98,13 @@ button:focus{
 }
 
 @media screen and (max-width: 900px) {
-  .half, .third{
+  .half, .half:last-child{
     float: none;
     margin: 0;
     width: 100%;
+  }
+  .half:last-child{
+    padding-top: 25px;
   }
 }
 
