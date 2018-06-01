@@ -23,6 +23,14 @@ class TeamSelect extends Component{
     this.setState({ teams: TEAMS.sort(this.sortByTeamPrice) });
   }
 
+  componentWillUnmount() {
+    var teams = this.state.teams;
+    for(var i=0; i < teams.length; i++){
+      teams[i].selected = false;
+    }
+    this.setState({ teams: teams });
+  }
+
   handleTeamClear = () => {
     var teams = this.state.teams;
 
