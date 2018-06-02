@@ -17,7 +17,20 @@ import Footer from './components/Footer/Footer';
 
 // ROUTER
 //import routes from './routes/routes';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+
+// AUTHENTICATION 
+const Auth = {
+  isAuthenticated: false,
+  authenticate(cb) {
+    this.isAuthenticated = true;
+    setTimeout(cb, 100);
+  },
+  signout(cb){
+    this.isAuthenticated = false;
+    setTimeout(cb, 100);
+  }
+}
 
 // APP
 class App extends Component {
