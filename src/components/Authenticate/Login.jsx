@@ -31,16 +31,15 @@ class Login extends Component{
     e.preventDefault();
     axios.post('http://localhost:5000/api/users/login', this.state)
         .then((result) => {
-          console.log(result.data);
-          // this.setState({ 
-          //   returnedUserId: result.data.userId,
-          // });
+          console.log(result.data.id);
+          this.props.triggerAuthCheck(result.data.id);
         });
   }
 
   render(){
+
     return(
-    	<div>
+    	<div className="Authenticate inner-wrap">
 		    <form onSubmit={this.handleLoginSubmit}>
 		      <label htmlFor="username">Username</label>
 		      <input type="text" id="username" onChange={this.handleUsernameChange}/>
@@ -49,7 +48,7 @@ class Login extends Component{
 		      <input type="submit" value="Login" />
 		    </form>
 		    <p>
-		    	<a href="#" onClick={this.props.triggerParentUpdate}>Register</a>
+		    	<Link to="/register">Register</Link>
 		    </p>
 	    </div>
     )

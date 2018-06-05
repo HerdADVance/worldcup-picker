@@ -103,20 +103,21 @@ exports.user_register = function(req, res, next){
 };
 
 exports.user_login = function(req, res, next){
-	req.session.passport.id = "JONS ID";
-	res.send(req.session);
+	User.findOne({ username: req.session.passport.user })
+			.exec(function(err, user){
+				if(err){
+					return next(err);
+				} else if (user){
+					//var payload = {id: user.id};
+					//var token = jwt.sign(payload, jwtOptions.secretOrKey);
+					//res.json({message: "Token received", token: token});
+					req.session.passport.id = user.id;
+					res.send(req.session.passport);
 
-	// User.findOne({ username: req.body.username })
-	// // TO DO: check password
-	// 		.exec(function(err, user){
-	// 			if(err){
-	// 				return next(err);
-	// 			} else if (user){
-	// 				var payload = {id: user.id};
-	// 				var token = jwt.sign(payload, jwtOptions.secretOrKey);
-	// 				res.json({message: "Token received", token: token});
-	// 			}
-	// 		});
+				} else{
+					res.send("User not found");
+				}
+			});
 };
 
 exports.user_logout = function(req, res, next){

@@ -51,7 +51,7 @@ class Register extends Component{
     const returnedUserId = this.state.returnedUserId;
 
     return(
-      <div>
+      <div className="Authenticate inner-wrap">
         {
           returnedUserId?
             <Redirect to={"/user/" + returnedUserId} />
@@ -71,7 +71,7 @@ class Register extends Component{
           <input type="submit" value="Register" />
         </form>
         <p>
-          <a href="#" onClick={this.props.triggerParentUpdate}>Login</a>
+          <Link to="/login">Login</Link>
         </p>
       </div>
     )
