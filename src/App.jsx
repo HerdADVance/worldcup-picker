@@ -8,7 +8,7 @@ import './App.css';
 
 // AUTHENTICATION 
 const authCheck = {
-  isAuthenticated: true,
+  isAuthenticated: false,
   authenticate(cb) {
     this.isAuthenticated = true;
   },
@@ -55,11 +55,12 @@ class App extends Component {
     super(props);
   
     this.state = {
-      userId: false
+      redirect: false
     }
   }
 
   componentDidMount(){
+    this.setState({ redirect: false });
     // this.callApi()
     //   .then(res => this.setState({ response: res.express}))
     //   .catch(err => console.log(err));
@@ -71,6 +72,11 @@ class App extends Component {
 
   render() {
     
+    const { redirect } = this.state;
+
+    if (redirect) {
+      return (<BrowserRouter><Redirect to='/team' /></BrowserRouter>);
+    }
 
     return (
       <BrowserRouter>
@@ -78,7 +84,7 @@ class App extends Component {
             <Header />
             <div className="main wrap">
               <Switch>
-                <Route exact path="/" component={Login}/>
+                <Route exact path="/" component={Dashboard}/>
                 <Route path="/home" component={Dashboard}/>
                 <PropsRoute path="/login" component={Login} triggerAuthCheck={this.updateAuthCheck}/>
                 <Route path="/register" component={Register}/>
