@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-var Entryschema = new Schema({
+var EntrySchema = new Schema({
 	user:{
 		type: Schema.Types.ObjectId,
 		ref: 'User'
@@ -10,12 +10,12 @@ var Entryschema = new Schema({
 	name:{
 		type: String,
 		max: 50
-	}
+	},
 	teams: [{
 		teamId: Number
 	}],
 	paid:{
-		type: Boolean
+		type: Boolean,
 		default: false
 	}
 });

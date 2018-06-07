@@ -1,4 +1,5 @@
 var User = require('../models/User');
+var Entry = require('../models/Entry');
 var bcrypt = require('bcrypt');
 var axios = require('axios');
 var jwt = require('jsonwebtoken');
@@ -123,6 +124,16 @@ exports.user_login = function(req, res, next){
 exports.user_logout = function(req, res, next){
 	req.logout();
 };
+
+exports.user_teams = function(req, res, next){
+	Entry.find({user: req.body.userId})
+		.sort([['name', 'ascending']])
+		.exec(function (err, list_teams) {
+			if(err) {return next(err);}
+			//res.render('user_list', {title: 'User List', user_list: list_users});
+			res.send({user_teams: list_teams})
+		});
+}
 
 
 

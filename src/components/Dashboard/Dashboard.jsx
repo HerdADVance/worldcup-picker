@@ -30,7 +30,10 @@ class Dashboard extends Component{
   }
 
   componentDidMount() {
-    //axios.get('http://localhost:5000/api/user/teams').then(response => this.setState({userTeams: response.data.user_teams}));  
+    axios.post('http://localhost:5000/api/users/teams', {userId: this.props.userId})
+      .then((result) => {
+        console.log(result.data);
+      }); 
   }
 
   handleDashboardSubmit = (e) =>{

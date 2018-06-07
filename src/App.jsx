@@ -8,7 +8,7 @@ import './App.css';
 
 // AUTHENTICATION 
 const authCheck = {
-  isAuthenticated: false,
+  userId: localStorage.getItem('wc2018_id'),
   authenticate(cb) {
     this.isAuthenticated = true;
   },
@@ -18,7 +18,7 @@ const authCheck = {
 }
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={(props) => (
-    authCheck.isAuthenticated
+    authCheck.userId
       ? <Component {...props} />
       : <Redirect to='/login' />
   )} />
@@ -60,7 +60,6 @@ class App extends Component {
   }
 
   componentDidMount(){
-    this.setState({ redirect: false });
     // this.callApi()
     //   .then(res => this.setState({ response: res.express}))
     //   .catch(err => console.log(err));
@@ -71,12 +70,7 @@ class App extends Component {
   }
 
   render() {
-    
-    const { redirect } = this.state;
-
-    if (redirect) {
-      return (<BrowserRouter><Redirect to='/team' /></BrowserRouter>);
-    }
+    const userId = authCheck.userId;
 
     return (
       <BrowserRouter>
@@ -84,8 +78,7 @@ class App extends Component {
             <Header />
             <div className="main wrap">
               <Switch>
-                <Route exact path="/" component={Dashboard}/>
-                <Route path="/home" component={Dashboard}/>
+                <PropsRoute path="/" component={Dashboard} userId={userId}/>
                 <PropsRoute path="/login" component={Login} triggerAuthCheck={this.updateAuthCheck}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/user/:id" component={UserProfile}/>

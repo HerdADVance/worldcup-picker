@@ -1,6 +1,6 @@
 // DEPENDENCIES
 import React, { Component } from 'react';
-import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import axios from 'axios';
 
 // CSS
@@ -13,7 +13,8 @@ class Login extends Component{
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      theRedirect: false
     }
   }
 
@@ -29,14 +30,21 @@ class Login extends Component{
   }
   handleLoginSubmit = (e) =>{
     e.preventDefault();
-    axios.post('http://localhost:5000/api/users/login', this.state)
+    axios.post('http://localhost:5000/api/users/login', {username: this.state.username, password: this.state.password})
         .then((result) => {
           console.log(result.data.id);
-          this.props.triggerAuthCheck(result.data.id);
+          localStorage.setItem('wc2018_id', result.data.id);
+          this.setState({ theRedirect: '/register' });
         });
   }
 
   render(){
+
+    const { theRedirect } = this.state;
+
+    if (theRedirect) {
+      return (<BrowserRouter><Switch><Redirect to={theRedirect} /></Switch></BrowserRouter>);
+    }
 
     return(
     	<div className="Authenticate inner-wrap">
