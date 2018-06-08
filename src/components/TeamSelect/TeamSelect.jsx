@@ -42,15 +42,17 @@ class TeamSelect extends Component{
   }
 
   handleTeamSubmit = (e) =>{
-    console.log(this.state.chosenTeams);
-    // e.preventDefault();
-    // axios.post('http://localhost:5000/api/users/new', this.state)
-    //     .then((result) => {
-    //       console.log(result.data);
-    //       this.setState({ 
-    //         returnedUserId: result.data.userId,
-    //       });
-    //     });
+    console.log(e);
+    e.preventDefault();
+    axios.post('http://localhost:5000/api/entry/create', {
+      chosenTeams: this.state.chosenTeams
+    })
+      .then((result) => {
+        console.log(result.data);
+        this.setState({ 
+          //returnedUserId: result.data.userId,
+        });
+      });
   }
 
   handleSortByTeamContinent = () => {
@@ -188,7 +190,7 @@ class TeamSelect extends Component{
             <tr className="team-select-action team-select-bottom">
               <td>
                 <button 
-                  onClick={(e) => this.handleTeamSubmit()}
+                  onClick={this.handleTeamSubmit}
                   className={this.state.chosenTeams.length == 8 && this.state.salary >= 0 ? 'clickable' : 'not-clickable'}
                  > 
                   Submit Team

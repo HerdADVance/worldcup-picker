@@ -78,7 +78,7 @@ class App extends Component {
             <Header />
             <div className="main wrap">
               <Switch>
-                <PropsRoute path="/" component={Dashboard} userId={userId}/>
+                <PropsRoute exact path="/" component={Dashboard} userId={userId}/>
                 <PropsRoute path="/login" component={Login} triggerAuthCheck={this.updateAuthCheck}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/user/:id" component={UserProfile}/>

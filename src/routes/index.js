@@ -54,4 +54,6 @@ router.post('/api/users/teams', user_controller.user_teams);
 //   res.json({message: "Success! You can not see this without a token"});
 // });
 
+router.post('/api/entry/create', user_controller.entry_create);
+
 module.exports = router;
