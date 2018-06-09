@@ -136,9 +136,73 @@ exports.user_teams = function(req, res, next){
 }
 
 exports.entry_create = function(req, res, next){
-	console.log(req.body.chosenTeams);
-	console.log(req.body.userId);
+
+	var teams = req.body.chosenTeams;
+	var teamName = req.body.teamName;
+	var userId = req.body.userId;
+
+	if(teams.length !== 8){
+		var err = new Error('Need exactly 8 teams');
+		err.status = 401;
+		return next(err);
+	}
+
+	var salary = 0;
+	var teamIds = [];
+	for(var i=0; i<teams.length; i++){
+		salary += teams[i].price;
+		teamIds.push({teamId: teams[i].id});
+	}
+
+	if(salary > 100){
+		var err = new Error('Price too high');
+		err.status = 401;
+		return next(err);
+	}
+
+	var entryData = {
+		user: userId,
+		name: teamName,
+		teams: teamIds,
+		paid: false
+	}
+
+	console.log(entryData);
+
+	User.findById(userId)
+		.exec(function(err, user){
+			if(err){
+				return next(err);
+			} else if(user){
+				Entry.create(entryData, function (err, user) {
+				    if (err) {
+				     	return next(err);
+				    } else {
+				    	console.log("Entry created");
+				    	return res.send({
+				    		message: "Entry created"
+				    	});
+				    }
+				});
+			} else{
+				var err = new Error('Couldn\'t find user');
+				err.status = 401;
+				return next(err);
+			}
+		});
+
+
+
 	//res.send(teams: req.body.chosenTeams)
 }
+
+
+
+
+
+
+
+
+
 
 

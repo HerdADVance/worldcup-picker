@@ -15,6 +15,7 @@ class TeamSelect extends Component{
     this.state = {
       teams: [],
       chosenTeams: [],
+      teamName: '',
       salary: 100
     }
   }
@@ -47,6 +48,7 @@ class TeamSelect extends Component{
     axios.post('http://localhost:5000/api/entry/create', {
       chosenTeams: this.state.chosenTeams,
       userId: localStorage.getItem('wc2018_id'),
+      teamName: this.state.teamName
     })
       .then((result) => {
         console.log(result.data);
@@ -113,6 +115,10 @@ class TeamSelect extends Component{
     salary += team.price;
 
     this.setState ({ teams: teams, chosenTeams: chosenTeams, salary: salary });
+  }
+
+  handleTeamNameChange = (e) => {
+    this.setState({teamName: e.target.value});
   }
 
   sortByTeamContinent = (a,b) => {
