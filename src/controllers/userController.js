@@ -137,6 +137,7 @@ exports.user_teams = function(req, res, next){
 
 exports.entry_create = function(req, res, next){
 	console.log(req.body.chosenTeams);
+	console.log(req.body.userId);
 	//res.send(teams: req.body.chosenTeams)
 }
 

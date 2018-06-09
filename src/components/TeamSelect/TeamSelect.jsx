@@ -45,7 +45,8 @@ class TeamSelect extends Component{
     console.log(e);
     e.preventDefault();
     axios.post('http://localhost:5000/api/entry/create', {
-      chosenTeams: this.state.chosenTeams
+      chosenTeams: this.state.chosenTeams,
+      userId: localStorage.getItem('wc2018_id'),
     })
       .then((result) => {
         console.log(result.data);
