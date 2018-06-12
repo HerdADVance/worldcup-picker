@@ -180,7 +180,8 @@ exports.entry_create = function(req, res, next){
 				    } else {
 				    	console.log("Entry created");
 				    	return res.send({
-				    		message: "Entry created"
+				    		message: "Entry created",
+				    		redirect: "/"
 				    	});
 				    }
 				});
@@ -191,9 +192,6 @@ exports.entry_create = function(req, res, next){
 			}
 		});
 
-
-
-	//res.send(teams: req.body.chosenTeams)
 }
 
 

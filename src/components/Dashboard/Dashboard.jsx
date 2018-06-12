@@ -12,27 +12,16 @@ class Dashboard extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      userTeams: [
-        {
-          id: 1,
-          name: 'My Team 1'
-        },
-        {
-          id: 2,
-          name: 'My Team 2'
-        },
-        {
-          id: 3,
-          name: 'My Team 3'
-        }
-      ]
+      userTeams: []
     }
   }
 
   componentDidMount() {
     axios.post('http://localhost:5000/api/users/teams', {userId: this.props.userId})
       .then((result) => {
-        console.log(result.data);
+        this.setState({ 
+          userTeams: result.data.user_teams,
+        });
       }); 
   }
 

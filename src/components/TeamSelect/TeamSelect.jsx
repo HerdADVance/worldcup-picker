@@ -16,7 +16,8 @@ class TeamSelect extends Component{
       teams: [],
       chosenTeams: [],
       teamName: '',
-      salary: 100
+      salary: 100,
+      redirect: false
     }
   }
 
@@ -53,7 +54,7 @@ class TeamSelect extends Component{
       .then((result) => {
         console.log(result.data);
         this.setState({ 
-          //returnedUserId: result.data.userId,
+          redirect: result.data.redirect
         });
       });
   }
@@ -151,8 +152,16 @@ class TeamSelect extends Component{
   }
 
   render(){
+    const redirect = this.state.redirect;
+
     return(
       <div className="TeamSelect">
+      {
+        redirect?
+          <Redirect to={redirect} />
+        :
+        null
+      }
         <h1>Choose My Team</h1>
       
         <input type="text" id="team-name" onChange={this.handleTeamNameChange} placeholder="Enter your team name" />
