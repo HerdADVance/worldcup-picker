@@ -82,7 +82,8 @@ class App extends Component {
                 <PropsRoute path="/login" component={Login} triggerAuthCheck={this.updateAuthCheck}/>
                 <Route path="/register" component={Register}/>
                 <Route path="/user/:id" component={UserProfile}/>
-                <PrivateRoute path='/team' component={TeamSelect} userId={userId} />
+                <PrivateRoute exact path='/team' component={TeamSelect} userId={userId} />
+                <PrivateRoute exact path='/team/:id' component={TeamSelect} userId={userId} />
               </Switch>
             </div>
             <Footer />

@@ -19,6 +19,7 @@ class Dashboard extends Component{
   componentDidMount() {
     axios.post('http://localhost:5000/api/users/teams', {userId: this.props.userId})
       .then((result) => {
+        console.log(result);
         this.setState({ 
           userTeams: result.data.user_teams,
         });
@@ -36,6 +37,10 @@ class Dashboard extends Component{
         });
   }
 
+  handleTeamEdit = (e) =>{
+
+  }
+
    render(){
     return(
       <div className="dashboard">
@@ -47,7 +52,10 @@ class Dashboard extends Component{
           <table><thead>
             <tr><th colSpan="2">Teams</th></tr></thead><tbody>
             {this.state.userTeams.map(team => 
-              <tr key={team.id}><td><span className="teams-name">{team.name}</span></td><td className="teams-edit"><Link to="/team/">Edit</Link></td></tr>
+              <tr key={team._id}>
+                <td><span className="teams-name">{team.name}</span></td>
+                <td className="teams-edit"><Link to={"/team/" + team._id}>Edit</Link></td>
+              </tr>
             )}
 
             <tr className="teams-create"><td colSpan="2">
